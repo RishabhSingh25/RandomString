@@ -35,7 +35,7 @@ resource "aws_instance" "app_server" {
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.app_sg.id]
   user_data              = filebase64("${path.module}/user_data.sh")
-  key_name               = "smallcase"
+# key_name               = "smallcase"
 
   tags = {
     Name = "PythonAppServer"
@@ -64,12 +64,12 @@ resource "aws_volume_attachment" "ebs_att" {
 resource "aws_security_group" "app_sg" {
   name = "app-sg"
 
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+#  ingress {
+#    from_port   = 22
+#    to_port     = 22
+#    protocol    = "tcp"
+#    cidr_blocks = ["0.0.0.0/0"]
+# }
 
   ingress {
     from_port   = 8081
